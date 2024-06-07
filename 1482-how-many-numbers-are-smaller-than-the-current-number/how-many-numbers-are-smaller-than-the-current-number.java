@@ -7,9 +7,6 @@ class Solution {
                 if(nums[i]>nums[j]){
                     count++;
                 }
-                else{
-                    continue;
-                }
             }
             arr[i]=count;
         }

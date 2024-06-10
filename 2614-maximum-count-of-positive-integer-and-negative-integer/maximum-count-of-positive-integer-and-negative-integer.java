@@ -1,19 +1,17 @@
 class Solution {
     public int maximumCount(int[] nums) {
-        int count=0;
-        int count1=0;
-        for(int i=0;i<=nums.length-1;i++){
-            if(nums[i] == 0){
-                continue;
+        int pos = 0;
+        int neg = 0;
+        for(int i : nums){
+            if(i >0){
+                pos++;
             }
-            if(nums[i]<0){
-                count++;
-            }
-            else{
-                count1++;
+            else if (i < 0){
+                neg++;
             }
         }
-        int max=Integer.max(count,count1);
+        int max=Integer.max(pos,neg);
         return max;
+        
     }
 }

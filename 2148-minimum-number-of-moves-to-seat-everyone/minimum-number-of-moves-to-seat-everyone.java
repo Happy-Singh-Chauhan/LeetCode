@@ -4,10 +4,8 @@ class Solution {
         Arrays.sort(seats);
         Arrays.sort(students);
         for(int i=0;i<=seats.length-1;i++){
-            int sum=students[i]-seats[i];
-            if(sum<0){
-                sum=sum*-1;
-            }
+            int sum=Math.abs(students[i]-seats[i]);
+            
             ans+=sum;
         }
         return ans;

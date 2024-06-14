@@ -9,8 +9,7 @@ class Solution {
                 nums[i]=nums[i-1]+1;
                 count++;
             }
-            
-            else if(nums[i-1]>nums[i]){
+             if(nums[i-1]>nums[i]){
                 int ans=nums[i];
                 nums[i]=nums[i-1]+1;
                 count+=nums[i]-ans;

@@ -31,14 +31,14 @@ class Solution {
         int t=arr.length;
         if(t % 2 !=0){
             ans=arr[t/2];
-            return ans;
+           
         }
         else{
            int s=0;
-           int e=t-1;
+           int e=arr.length-1;
            int mid=(s+e)/2;
            ans=(double)(arr[mid]+arr[mid+1])/2;
-            return ans;
         }
+         return ans;
     }
 }

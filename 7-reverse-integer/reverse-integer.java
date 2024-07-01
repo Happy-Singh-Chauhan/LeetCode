@@ -1,19 +1,15 @@
 class Solution {
     public int reverse(int x) {
-        int sign=1;
-        if(x<0){
-            sign=(-1);
+        long rev = 0;
+        while(x!=0){
+            int d = x % 10;
+            rev = rev*10 + d;
+            x = x / 10;
         }
-        x=Math.abs(x);
-        int ans=0;
-        while(x>0){
-            int rem=x%10;
-            if(ans>(Integer.MAX_VALUE - rem)/10){
+        
+        if (rev < Math.pow(-2, 31) || rev > Math.pow(2, 31) - 1)
                 return 0;
-            }
-            ans=ans*10+rem;
-            x/=10;
-        }
-        return sign*ans;
+        else
+            return (int) rev;
     }
 }

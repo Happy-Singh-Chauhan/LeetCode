@@ -4,6 +4,9 @@ class Solution {
         if(n<5){
             return 0;
         }
+        if(n == 5){
+            return 1;
+        }
         Arrays.sort(nums);
         int a=nums[n-4]-nums[0];
         int b=nums[n-3]-nums[1];

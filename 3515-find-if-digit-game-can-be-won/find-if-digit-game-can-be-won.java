@@ -10,9 +10,6 @@ class Solution {
                 sum2+=n;
             }
         }
-        if(sum1 != sum2){
-            return true;
-        }
-        return false;
+        return (sum1 != sum2);
     }
 }

@@ -1,26 +1,24 @@
 class Solution {
-    static boolean check(String s,String allowed){
-        if(s.length() == 1){
-            if(allowed.contains(""+s.charAt(0))){
-                return true;
-            }
-            return false;
+    public int countConsistentStrings(String allowed, String[] words) {
+        boolean[] s = new boolean[26];
+        for (char c : allowed.toCharArray()) {
+            s[c - 'a'] = true;
         }
-        for(int j=0;j<s.length();j++){
-            if(!allowed.contains(""+s.charAt(j))){
+        int ans = 0;
+        for (String w : words) {
+            if (check(w, s)) {
+                ++ans;
+            }
+        }
+        return ans;
+    }
+
+    private boolean check(String w, boolean[] s) {
+        for (int i = 0; i < w.length(); ++i) {
+            if (!s[w.charAt(i) - 'a']) {
                 return false;
             }
         }
         return true;
-    }
-    public int countConsistentStrings(String allowed, String[] words) {
-        int count=0;
-        for(int i=0;i<words.length;i++){
-            boolean ans=check(words[i],allowed);
-            if(ans){
-                count++;
-            }
-        }
-        return count;
     }
 }

@@ -1,19 +1,20 @@
 class Solution {
     public int minSwaps(String s) {
-        int imbalance=0;
-        int swapCount=0;
-        for(int i=0;i<s.length();i++){
-            if(s.charAt(i) == '['){
-                imbalance++;
+        int opening =0;
+        int unbalanced=0;
+        for(char c:s.toCharArray()){
+            if(c == '['){
+                opening++;
             }
-            if(s.charAt(i) == ']' && imbalance != 0){
-                imbalance--;
-            }
-            else if(s.charAt(i) == ']' && imbalance == 0){
-                imbalance++;
-                swapCount++;
+            else{
+                if(opening>0){
+                    opening--;
+                }
+                else{
+                    unbalanced++;
+                }
             }
         }
-        return swapCount;
+        return unbalanced/2 + unbalanced%2;
     }
 }

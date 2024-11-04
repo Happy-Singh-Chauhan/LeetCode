@@ -1,17 +1,31 @@
 class Solution {
     public String compressedString(String word) {
-        String str="";
-        int pos=0;
-        while(pos < word.length()){
+        StringBuilder sb=new StringBuilder();
+        int j=0;
+        while(j < word.length()){
+            char ch=word.charAt(j);
             int count=0;
-            char ch=word.charAt(pos);
-            while(pos < word.length() && count < 9 && word.charAt(pos) == ch){
+
+            while(j < word.length() && ch == word.charAt(j)){
                 count++;
-                pos++;
+                j++;
             }
-            str+=count;
-            str+=ch;
+            if(count <= 9){
+                char value=(char)(count+'0');
+                sb.append(value);
+                sb.append(ch);
+            }
+            else{
+                while(count > 9){
+                    sb.append('9');
+                    sb.append(ch);
+                    count-=9;
+                }
+                char value=(char)(count+'0');
+                sb.append(value);
+                sb.append(ch);
+            }
         }
-        return str;
+        return sb.toString();
     }
 }

@@ -1,20 +1,32 @@
 class Solution {
     public boolean canSortArray(int[] nums) {
-        int i=0;
-        while(i<nums.length-1){
-            if(nums[i] > nums[i+1] && Integer.bitCount(nums[i]) == Integer.bitCount(nums[i+1])){
-                int k=nums[i];
-                nums[i]=nums[i+1];
-                nums[i+1]=k;
-                i=0;
-            }
-            else{
-                i++;
+        int[] arr=nums.clone();
+
+        for(int i=0;i<arr.length-1;i++){
+
+            if(arr[i] > arr[i+1]){
+                if(Integer.bitCount(arr[i]) == Integer.bitCount(arr[i+1])){
+                    int k=arr[i];
+                    arr[i]=arr[i+1];
+                    arr[i+1]=k;
+                }
+                else{
+                    return false;
+                }
             }
         }
-        for(int j=0;j<nums.length-1;j++){
-            if(nums[j] > nums[j+1]){
-                return false;
+
+        for(int i=arr.length-1;i>0;i--){
+
+            if(arr[i] < arr[i-1]){
+                if(Integer.bitCount(arr[i]) == Integer.bitCount(arr[i-1])){
+                    int k=arr[i];
+                    arr[i]=arr[i-1];
+                    arr[i-1]=k;
+                }
+                else{
+                    return false;
+                }
             }
         }
         return true;

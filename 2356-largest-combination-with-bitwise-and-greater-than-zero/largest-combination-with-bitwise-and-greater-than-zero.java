@@ -1,15 +1,18 @@
 class Solution {
     public int largestCombination(int[] candidates) {
         int[] arr=new int[24];
-        int max=0;
-        for(int i=0;i<arr.length;i++){
-            int count=0;
+        for(int i=0;i<24;i++){
             for(int num:candidates){
-                if((num & (1<<i)) != 0){
-                    count++;
+                if((num &(1<<i)) != 0){
+                    arr[i]++;
                 }
             }
-            max=Math.max(max,count);
+        }
+        int max=0;
+        for(int num:arr){
+            if(num > max){
+                max=num;
+            }
         }
         return max;
     }

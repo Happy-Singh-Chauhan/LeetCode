@@ -9,7 +9,7 @@ class Solution {
             if(set.contains(str)){
                 count++;
             }
-            if(count >= 2){
+            if(count == 2){
             return true;
         }
         }

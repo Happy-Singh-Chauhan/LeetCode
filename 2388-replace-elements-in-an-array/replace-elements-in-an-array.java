@@ -1,12 +1,15 @@
 class Solution {
     public int[] arrayChange(int[] nums, int[][] operations) {
-        HashMap<Integer,Integer> map=new HashMap<>();
+        int[] pos=new int[1000001];
         for(int i=0;i<nums.length;i++){
-            map.put(nums[i],i);
+            pos[nums[i]]=i;
         }
         for(int i=0;i<operations.length;i++){
-            nums[map.get(operations[i][0])]=operations[i][1];
-            map.put(operations[i][1],map.get(operations[i][0]));
+            int oldNum=operations[i][0];
+            int newNum=operations[i][1];
+            int index=pos[oldNum];
+            nums[index]=newNum;
+            pos[newNum]=index;
         }
         return nums;
     }

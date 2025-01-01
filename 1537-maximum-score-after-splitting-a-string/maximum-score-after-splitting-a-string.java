@@ -1,5 +1,8 @@
 class Solution {
     public int maxScore(String s) {
+        if(!s.contains("0") || !s.contains("1")){
+            return s.length()-1;
+        }
         int max=Integer.MIN_VALUE;
         int zeroes=0;
         int ones=0;

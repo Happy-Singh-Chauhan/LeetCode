@@ -1,36 +1,21 @@
 class Solution {
-    public boolean isVowel(char c){
-        if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'){
-            return true;
-        }
-        return false;
-    }
     public int[] vowelStrings(String[] words, int[][] queries) {
-        int len=queries.length;
-        int[] res=new int[len];
-        int[] vow=new int[words.length];
+        HashSet<Character> set=new HashSet<>(Arrays.asList('a','e','i','o','u'));
+        int[] ans=new int[queries.length];
+        int[] prefixSum=new int[words.length];
+        int sum=0;
         for(int i=0;i<words.length;i++){
-            String s=words[i];
-            if(isVowel(s.charAt(0)) && isVowel(s.charAt(s.length()-1)) ){
-                vow[i]=1;
+            String currentWord=words[i];
+            if(set.contains(currentWord.charAt(0)) && set.contains(currentWord.charAt(currentWord.length()-1))){
+                sum++;
             }
-            else{
-                vow[i]=0;
-            }
+            prefixSum[i]=sum;
         }
-        for(int i=1;i<vow.length;i++){
-            vow[i]+=vow[i-1];
+
+        for(int i=0;i<queries.length;i++){
+            int[] currentQuery=queries[i];
+            ans[i]=prefixSum[currentQuery[1]]-(currentQuery[0] == 0 ? 0:prefixSum[currentQuery[0]-1]);
         }
-        for(int i=0;i<len;i++){
-            int j=queries[i][0];
-            int k=queries[i][1];
-            if(j == 0){
-                res[i]=vow[k];
-            }
-            else{
-                res[i]=vow[k]-vow[j-1];
-            }
-        }
-        return res;
+        return ans;
     }
 }

@@ -2,19 +2,14 @@ class Solution {
     public boolean canConstruct(String s, int k) {
         if(k > s.length())return false;
         if(k == s.length()) return true;
-        Set<Character> set=new HashSet<>();
-        int count=0;
+        int[] freq=new int[26];
         for(char c:s.toCharArray()){
-            if(!set.contains(c)){
-                set.add(c);
-                count++;
-            }
-            else{
-                count--;
-                set.remove(c);
-            }
+            freq[c-'a']++;
         }
-        if(count > k) return false;
-        return true;
+        int oddCount=0;
+        for(int count:freq){
+            if(count % 2 == 1)oddCount++;
+        }
+        return oddCount<=k;
     }
 }

@@ -7,10 +7,9 @@ class Solution {
         }
         int minLen=0;
         for(int count:freq){
-            while(count >= 3){
-                count-=2;
-            }
-            minLen+=count;
+            if(count == 0)continue;
+            if(count % 2 == 0)minLen+=2;
+            else minLen+=1;
         }
         return minLen;
     }

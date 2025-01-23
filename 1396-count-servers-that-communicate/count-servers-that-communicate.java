@@ -15,7 +15,6 @@ class Solution {
         return true;
     }
     public int countServers(int[][] grid) {
-        int ans=0;
         int countSet=0;
         int countUnset=0;
         for(int i=0;i<grid.length;i++){

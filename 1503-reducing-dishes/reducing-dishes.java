@@ -5,7 +5,6 @@ class Solution {
         for(int i=1;i<=list.size();i++){
             ans+=i*list.get(i-1);
         }
-        if(ans < 0)ans=0;
         list.remove(list.get(0));
         max=Math.max(max,ans);
         return helper(list,0,max);

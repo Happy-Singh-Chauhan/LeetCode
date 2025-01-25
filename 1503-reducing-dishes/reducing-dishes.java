@@ -1,7 +1,6 @@
 class Solution {
     public int helper(List<Integer> list,int ans,int max){
         if(list.isEmpty())return max;
-        Collections.sort(list);
         for(int i=1;i<=list.size();i++){
             ans+=i*list.get(i-1);
         }
@@ -16,6 +15,7 @@ class Solution {
         }
         int ans=0;
         int max=0;
+        Collections.sort(list);
         return helper(list,ans,max);
     }
 }

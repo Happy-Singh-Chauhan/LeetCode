@@ -20,10 +20,7 @@ class Solution {
                 }
             }
         }
-        String ans="";
-        for(int i=0;i<n;i++){
-            ans+="0";
-        }
-        return ans;
+        
+        return "";
     }
 }

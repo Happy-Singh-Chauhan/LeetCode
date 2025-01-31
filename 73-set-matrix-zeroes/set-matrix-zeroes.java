@@ -9,14 +9,7 @@ class Solution {
             matrix[k][j]=-69;
         }
     }
-    public int[][] setZeroes(int[][] matrix) {
-        int count=0;
-        for(int i=0;i<matrix.length;i++){
-            for(int j=0;j<matrix[0].length;j++){
-                if(matrix[i][j] == 0)count++;
-            }
-        }
-        if(count == 0)return matrix;
+    public void setZeroes(int[][] matrix) {
         for(int i=0;i<matrix.length;i++){
             for(int j=0;j<matrix[0].length;j++){
                 if(matrix[i][j] == 0){
@@ -31,6 +24,5 @@ class Solution {
                 }
             }
         }
-        return matrix;
     }
 }

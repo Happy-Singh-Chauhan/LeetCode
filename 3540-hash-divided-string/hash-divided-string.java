@@ -7,15 +7,13 @@ class Solution {
             arr[i]=(char)(97+i);
         }
         char[] words=s.toCharArray();
-        int i=0;
-        while(i<words.length){
+        for(int i=0;i<words.length;i+=k){
             int value=0;
             for(int j=i;j<i+k;j++){
                 value+=(words[j]-97);
             }
             value%=26;
             ans.append(arr[value]);
-            i+=k;
         }
         return ans.toString();
     }

@@ -1,17 +1,11 @@
 class Solution {
     public int reverse(int num){
-        int n=num;
-        int count=0;
-        while(n>0){
-            n/=10;
-            count++;
-        }
-        while(num>0){
-            n+=num%10 * Math.pow(10,count-1);
-            count--;
+        int result=0;
+        while(num > 0){
+            result=result*10 + num%10;
             num/=10;
         }
-        return n;
+        return result;
     }
     public int countNicePairs(int[] nums) {
         int pairs=0;

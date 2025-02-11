@@ -8,15 +8,7 @@ class Solution {
        for(int i=0;i<arr1.length;i++){
         if(arr1[i] != arr2[i])return false;
        }
-       int ans1=0;
-       int ans2=0;
-       for(char c:arr1){
-        ans1+=(int)c;
-       }
-       for(char c:arr2){
-        ans2+=(int)c;
-       }
-        return ans1 == ans2;
+       return true;
     }
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> ans=new ArrayList<>();

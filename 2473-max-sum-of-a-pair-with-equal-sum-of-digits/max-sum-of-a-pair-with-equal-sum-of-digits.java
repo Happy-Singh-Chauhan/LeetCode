@@ -8,17 +8,14 @@ class Solution {
         return sum;
     }
     public int maximumSum(int[] nums) {
-        Map<Integer,Integer> map=new HashMap<>();
+        int[] arr=new int[90];
         int ans=-1;
         for(int i=0;i<nums.length;i++){
             int digitSum=digits(nums[i]);
-            if(map.containsKey(digitSum)){
-                ans=Math.max(ans,map.get(digitSum)+nums[i]);
-                map.put(digitSum,Math.max(nums[i],map.get(digitSum)));
+            if(arr[digitSum] != 0){
+                ans=Math.max(ans,arr[digitSum]+nums[i]);
             }
-            else{
-            map.put(digitSum,nums[i]);
-            }
+            arr[digitSum]=Math.max(arr[digitSum],nums[i]);
         }
         return ans;
     }

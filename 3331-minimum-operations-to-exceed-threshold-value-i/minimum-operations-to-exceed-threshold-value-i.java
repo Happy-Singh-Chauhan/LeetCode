@@ -1,9 +1,9 @@
 class Solution {
     public int minOperations(int[] nums, int k) {
-        Arrays.sort(nums);
-        for(int i=0;i<nums.length;i++){
-            if(nums[i] >= k)return i;
+        int count=0;
+        for(int num:nums){
+            if(num < k)count++;
         }
-        return -1;
+        return count;
     }
 }

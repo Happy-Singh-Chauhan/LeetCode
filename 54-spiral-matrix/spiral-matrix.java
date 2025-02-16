@@ -3,44 +3,32 @@ class Solution {
         List<Integer> list=new ArrayList<>();
         int n=matrix.length;
         int m=matrix[0].length;
-        if(n == 1 || m == 1){
-            for(int i=0;i<n;i++){
-                for(int j=0;j<m;j++){
-                    list.add(matrix[i][j]);
-                }
+        int top=0;
+        int left=0;
+        int right=m-1;
+        int down=n-1;
+
+        while(list.size() < n*m){
+            for(int i=left;i<=right;i++){
+                list.add(matrix[top][i]);
             }
-            return list;
-        }
-        int k=0;
-        for(int i=k;i<n;i++){
-            if(list.size() == matrix.length*matrix[0].length)break;
-            int r=0;
-            for(int j=k;j<m;j++){
-                list.add(matrix[i][j]);
-                r=j;
+            for(int i=top+1;i<=down;i++){
+                list.add(matrix[i][right]);
             }
-            int t=0;
-            if(r == m-1 && i == k){
-                for(int s=k+1;s<n;s++){
-                    list.add(matrix[s][r]);
-                    t=s;
-                }
+            if(top != down){
+            for(int i=right-1;i>=left;i--){
+                list.add(matrix[down][i]);
             }
-            int q=0;
-            if(t == n-1 && r == m-1){
-                for(int s=r-1;s>=k;s--){
-                    list.add(matrix[t][s]);
-                    q=s;
-                }
             }
-            if(q == k && t == n-1){
-                for(int s=t-1;s>=k+1;s--){
-                    list.add(matrix[s][q]);
-                }
+            if(left != right){
+            for(int i=down-1;i>=top+1;i--){
+                list.add(matrix[i][left]);
             }
-            m--;
-            n--;
-            k++;
+            }
+            top++;
+            left++;
+            right--;
+            down--;
         }
         return list;
     }

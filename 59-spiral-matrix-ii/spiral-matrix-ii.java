@@ -16,18 +16,17 @@ class Solution {
                 matrix[i][right]=count;
                 count++;
             }
-            if(left != right){
+
                 for(int i=right-1;i>=left;i--){
                     matrix[down][i]=count;
                     count++;
                 }
-            }
-            if(top != down){
+            
                 for(int i=down-1;i>=top+1;i--){
                     matrix[i][left]=count;
                     count++;
                 }
-            }
+                
             left++;
             right--;
             top++;

@@ -3,9 +3,8 @@ class Solution {
         int totalCount=0;
         for(int i=0;i<26;i++){
             if(freq[i] > 0){
-                totalCount++;
                 freq[i]--;
-                totalCount+=buildChar(freq);
+                totalCount+=1+buildChar(freq);
                 freq[i]++;
             }
         }

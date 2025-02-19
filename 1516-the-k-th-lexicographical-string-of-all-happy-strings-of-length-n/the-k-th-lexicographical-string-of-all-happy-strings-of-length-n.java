@@ -10,10 +10,10 @@ class Solution {
         }
     }
     public String getHappyString(int n, int k) {
-       List<String> list =new ArrayList<>();
-        String currentString="";
-        generateHappyString(n,currentString,list);
+       String currentString="";
+       List<String> list=new ArrayList<>();
 
+        generateHappyString(n,currentString,list);
         if(list.size() < k)return "";
         return list.get(k-1);
     }

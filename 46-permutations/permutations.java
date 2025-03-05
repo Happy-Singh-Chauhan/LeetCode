@@ -1,19 +1,27 @@
 class Solution {
-    public void generate(List<List<Integer>> ans,int[] nums,List<Integer> list){
-            if(list.size() == nums.length){
-                ans.add(new ArrayList<>(list));
-                return;
+    public void swap(int[] arr,int i,int j){
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    public void permute(int index,List<List<Integer>> ans,int[] nums){
+        if(index == nums.length){
+            List<Integer> list=new ArrayList<>();
+            for(int num:nums){
+                list.add(num);
             }
-        for(int i=0;i<nums.length;i++){
-            if(list.contains(nums[i]))continue;
-            list.add(nums[i]);
-            generate(ans,nums,list);
-            list.remove(list.size()-1);
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+        for(int i=index;i<nums.length;i++){
+            swap(nums,index,i);
+            permute(index+1,ans,nums);
+            swap(nums,index,i);
         }
     }
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans=new ArrayList<>();
-        generate(ans,nums,new ArrayList<>());
+        permute(0,ans,nums);
         return ans;
     }
 }

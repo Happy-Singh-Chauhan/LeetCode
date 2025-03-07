@@ -25,6 +25,7 @@ class Solution {
                 ans[0]=list.get(i);
                 ans[1]=list.get(i+1);
             }
+            if(diff == 2)break;
             min=Math.min(min,diff);
         }
         return ans;

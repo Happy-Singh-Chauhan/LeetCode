@@ -1,25 +1,27 @@
 class Solution {
-    public boolean canBeDistributed(int[] candies,long k,int distributing){
-        long maxDistributing=0;
+    public boolean canBeDistributed(int[] candies,int distributing,long k){
+        long distributed=0;
         for(int i=0;i<candies.length;i++){
-            maxDistributing+=(candies[i]/distributing);
+            distributed+=(candies[i]/distributing);
         }
-        return maxDistributing >= k;
+        return distributed >= k;
     }
     public int maximumCandies(int[] candies, long k) {
-        int maxCandies=0;
-        for(int num:candies){
-            maxCandies=Math.max(maxCandies,num);
-        }
         int start=0;
-        int end=maxCandies;
+        int end=0;
+        long sum=0;
+        for(int num:candies){
+            end=Math.max(end,num);
+            sum+=num;
+        }
+        if(sum < k)return 0;
         while(start < end){
-            int middle=(start+end+1)/2;
-            if(canBeDistributed(candies,k,middle)){
-                start=middle;
+            int mid=(start+end+1)/2;
+            if(canBeDistributed(candies,mid,k)){
+                start=mid;
             }
             else{
-                end=middle-1;
+                end=mid-1;
             }
         }
         return start;

@@ -1,18 +1,16 @@
 class Solution {
     public int countSymmetricIntegers(int low, int high) {
-       int result=0;
-       for(int i=low;i<=high;i++){
-        String s=String.valueOf(i);
-        if(s.length() % 2 == 1)continue;
-        int sum=0;
-        for(int j=0;j<s.length()/2;j++){
-            sum+=s.charAt(j);
+        int result=0;
+        for(int i=low;i<=high;i++){
+            if(i<100 && i%11 == 0){
+                result++;
+            }
+            else if(i>=1000 && i<10000){
+                int left=(i/1000)+(i%1000)/100;
+                int right=(i%100)/10+(i%10);
+                if(left == right)result++;
+            }
         }
-        for(int j=s.length()/2;j<s.length();j++){
-            sum-=s.charAt(j);
-        }
-        if(sum == 0)result++;
-       } 
-       return result;
+        return result;
     }
 }

@@ -1,26 +1,22 @@
 class Solution {
-    public int f(int[] coins,int amount,int index,int[][] dp){
-        if(index == 0){
-            if(amount % coins[0] == 0){
-                return amount/coins[0];
-            }
-            return (int)1e8;
-        }
-        if(dp[index][amount] != -1)return dp[index][amount];
-        int np=f(coins,amount,index-1,dp);
-        int p=Integer.MAX_VALUE;
-        if(coins[index] <= amount){
-            p=1+f(coins,amount-coins[index],index,dp);
-        }
-        return dp[index][amount]=Math.min(np,p);
-    }
     public int coinChange(int[] coins, int amount) {
         int n=coins.length;
         int[][] dp=new int[n][amount+1];
-        for(int[] row:dp){
-            Arrays.fill(row,-1);
+        for(int i=0;i<=amount;i++){
+            if(i % coins[0] == 0)dp[0][i]=i/coins[0];
+            else dp[0][i]=(int)1e8;
         }
-        int ans=f(coins,amount,n-1,dp);
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=amount;j++){
+                 int np=dp[i-1][j];
+                 int p=Integer.MAX_VALUE;
+                 if(coins[i] <= j){
+                p=1+dp[i][j-coins[i]];
+                }
+            dp[i][j]=Math.min(np,p);
+            }
+        }
+        int ans=dp[n-1][amount];
         if(ans >= 1e8)return -1;
         return ans;
     }

@@ -31,8 +31,8 @@ class Solution {
         for(int i=0;i<n;i++){
             if(left[i] == -1 && right[i] == -1)sb.append('.');
             else{
-                if(left[i] == -1 && right[i] != -1)sb.append('R');
-                else if(right[i] == -1 && left[i] != -1)sb.append('L');
+                if(left[i] == -1)sb.append('R');
+                else if(right[i] == -1)sb.append('L');
                 else{
                     if(Math.abs(right[i] - i) > Math.abs(i - left[i]))sb.append('L');
                     else if(Math.abs(right[i] - i) < Math.abs(i - left[i]))sb.append('R');
@@ -40,8 +40,6 @@ class Solution {
                 }
             }
         }
-        System.out.println(Arrays.toString(left));
-        System.out.println(Arrays.toString(right));
         return sb.toString();
     }
 }

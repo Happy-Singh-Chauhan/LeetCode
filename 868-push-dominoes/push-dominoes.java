@@ -4,29 +4,17 @@ class Solution {
         int[] left=new int[n];
         int[] right=new int[n];
         StringBuilder sb=new StringBuilder();
-        if(dominoes.charAt(dominoes.length()-1) == 'L'){
-            left[n-1]=n-1;
+        int nearLeft=-1;
+        for(int i=n-1;i>=0;i--){
+            if(dominoes.charAt(i) == 'R')nearLeft=-1;
+            else if(dominoes.charAt(i) == 'L')nearLeft=i;
+           left[i]=nearLeft;
         }
-        else left[n-1]=-1;
-        for(int i=n-2;i>=0;i--){
-            if(dominoes.charAt(i) == 'R')left[i]=-1;
-            else if(dominoes.charAt(i) == 'L')left[i]=i;
-            else{
-                if(left[i+1] != -1)left[i]=left[i+1];
-                else left[i]=-1;
-            }
-        }
-        if(dominoes.charAt(0) == 'R'){
-            right[0]=0;
-        }
-        else right[0]=-1;
-        for(int i=1;i<n;i++){
-            if(dominoes.charAt(i) == 'L')right[i]=-1;
-            else if(dominoes.charAt(i) == 'R')right[i]=i;
-            else{
-                if(right[i-1] != -1)right[i]=right[i-1];
-                else right[i]=-1;
-            }
+        int nearRight=-1;
+        for(int i=0;i<n;i++){
+            if(dominoes.charAt(i) == 'L')nearRight=-1;
+            else if(dominoes.charAt(i) == 'R')nearRight=i;
+            right[i]=nearRight;
         }
         for(int i=0;i<n;i++){
             if(left[i] == -1 && right[i] == -1)sb.append('.');

@@ -30,14 +30,13 @@ class Solution {
                 for(int k=0;k<=2;k++){
                     int maxProfit=0;
                     if(j == 1){
-            maxProfit=Math.max(-prices[i]+dp[i+1][0][k],dp[i+1][1][k]);
+            dp[i][j][k]=Math.max(-prices[i]+dp[i+1][0][k],dp[i+1][1][k]);
         }
         else{
             if(k != 0){
-            maxProfit=Math.max(prices[i]+dp[i+1][1][k-1],dp[i+1][0][k]);
+            dp[i][j][k]=Math.max(prices[i]+dp[i+1][1][k-1],dp[i+1][0][k]);
             }
         }
-        dp[i][j][k]=maxProfit;
                 }
             }
         }

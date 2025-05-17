@@ -1,26 +1,16 @@
 class Solution {
+    public int f(int[] prices,int index,int transaction,int[][] dp){
+        if(index == prices.length || transaction == 4)return 0;
+        if(dp[index][transaction] != -1)return dp[index][transaction];
+        if(transaction % 2 == 0){
+            return dp[index][transaction]=Math.max(-prices[index]+f(prices,index+1,transaction+1,dp),f(prices,index+1,transaction,dp));
+        }
+        return dp[index][transaction]=Math.max(prices[index]+f(prices,index+1,transaction+1,dp),f(prices,index+1,transaction,dp));
+    }
     public int maxProfit(int[] prices) {
         int n=prices.length;
-        int[][] after=new int[2][3];
-        int[][] curr=new int[2][3];
-        for(int i=n-1;i>=0;i--){
-            for(int j=0;j<=1;j++){
-                for(int k=1;k<=2;k++){
-                    int maxProfit=0;
-                    if(j == 1){
-                        curr[j][k]=Math.max(-prices[i]+after[0][k],after[1][k]);
-                    }
-                    else{
-                        curr[j][k]=Math.max(prices[i]+after[1][k-1],after[0][k]);
-                    }
-                }
-            }
-            for(int l=0;l<=1;l++){
-                for(int m=0;m<=2;m++){
-                    after[l][m]=curr[l][m];
-                }
-            }
-        }
-        return after[1][2];
+        int[][] dp=new int[n][4];
+        for(int[] row:dp)Arrays.fill(row,-1);
+        return f(prices,0,0,dp);
     }
 }

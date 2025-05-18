@@ -1,18 +1,26 @@
 class Solution {
-    public int f(int[] prices,int index,int buy,int transaction,int[][][] dp){
-        if(index == prices.length || transaction == 0)return 0;
-        if(dp[index][buy][transaction] != -1)return dp[index][buy][transaction];
-        if(buy == 1){
-            return dp[index][buy][transaction]=Math.max(-prices[index]+f(prices,index+1,0,transaction,dp),f(prices,index+1,1,transaction,dp));
-        }
-        return dp[index][buy][transaction]=Math.max(prices[index]+f(prices,index+1,1,transaction-1,dp),f(prices,index+1,0,transaction,dp));
-    }
     public int maxProfit(int k, int[] prices) {
-      int n=prices.length;
-      int[][][] dp=new int[n][2][k+1];
-        for(int[][] row:dp){
-            for(int[] col:row)Arrays.fill(col,-1);
+     int n=prices.length;
+        int[][] after=new int[2][k+1];
+        int[][] curr=new int[2][k+1];
+        for(int i=n-1;i>=0;i--){
+            for(int j=0;j<=1;j++){
+                for(int k1=1;k1<=k;k1++){
+                    int maxProfit=0;
+                    if(j == 1){
+                        curr[j][k1]=Math.max(-prices[i]+after[0][k1],after[1][k1]);
+                    }
+                    else{
+                        curr[j][k1]=Math.max(prices[i]+after[1][k1-1],after[0][k1]);
+                    }
+                }
+            }
+            for(int l=0;l<=1;l++){
+                for(int m=0;m<=k;m++){
+                    after[l][m]=curr[l][m];
+                }
+            }
         }
-        return f(prices,0,1,k,dp);
+        return after[1][k];
     }
 }

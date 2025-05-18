@@ -9,7 +9,7 @@ class Solution {
     }
     public int maxProfit(int k, int[] prices) {
       int n=prices.length;
-      int[][][] dp=new int[n][2][2*k];
+      int[][][] dp=new int[n][2][k+1];
         for(int[][] row:dp){
             for(int[] col:row)Arrays.fill(col,-1);
         }

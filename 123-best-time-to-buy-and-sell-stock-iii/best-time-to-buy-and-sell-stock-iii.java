@@ -9,18 +9,20 @@ class Solution {
     }
     public int maxProfit(int[] prices) {
         int n=prices.length;
-        int[][] dp=new int[n+1][5];
+        int[] after=new int[5];
+        int[] curr=new int[5];
 
         for(int i=n-1;i>=0;i--){
             for(int j=3;j>=0;j--){
                 if(j % 2 == 0){
-                    dp[i][j]=Math.max(-prices[i]+dp[i+1][j+1],dp[i+1][j]);
+                    curr[j]=Math.max(-prices[i]+after[j+1],after[j]);
                 }
                 else{
-                    dp[i][j]=Math.max(prices[i]+dp[i+1][j+1],dp[i+1][j]);
+                    curr[j]=Math.max(prices[i]+after[j+1],after[j]);
                 }
             }
+            after=curr;
         }
-        return dp[0][0];
+        return after[0];
     }
 }

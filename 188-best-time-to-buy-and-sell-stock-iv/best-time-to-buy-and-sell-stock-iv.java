@@ -15,11 +15,7 @@ class Solution {
                     }
                 }
             }
-            for(int l=0;l<=1;l++){
-                for(int m=0;m<=k;m++){
-                    after[l][m]=curr[l][m];
-                }
-            }
+           after=curr;
         }
         return after[1][k];
     }

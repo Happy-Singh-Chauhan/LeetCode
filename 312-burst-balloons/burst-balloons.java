@@ -17,8 +17,18 @@ class Solution {
      for(int i=0;i<n;i++){
         coins[i+1]=nums[i];
      }   
-     int[][] dp=new int[n+1][n+1];
-     for(int[] row:dp)Arrays.fill(row,-1);
-     return f(1,n,coins,dp);
+     int[][] dp=new int[n+2][n+2];
+    for(int i=n;i>=1;i--){
+        for(int j=1;j<=n;j++){
+            if(i > j)continue;
+            int max=Integer.MIN_VALUE;
+        for(int ind=i;ind<=j;ind++){
+            int cost=(coins[i-1]*coins[ind]*coins[j+1])+dp[i][ind-1]+dp[ind+1][j];
+            max=Math.max(max,cost);
+        }
+        dp[i][j]=max;
+        }
+    }
+     return dp[1][n];
     }
 }

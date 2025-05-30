@@ -1,25 +1,24 @@
 class Solution {
-    public int f(int i,int j,int[] newCuts,int[][] dp){
-        if(dp[i][j] != -1)return dp[i][j];
-        if(j - i == 1)return 0;
-        int min=Integer.MAX_VALUE;
-        for(int ind=i+1;ind<j;ind++){
-            int cost=f(i,ind,newCuts,dp)+f(ind,j,newCuts,dp)+newCuts[j]-newCuts[i];
-            min=Math.min(min,cost);
-        }
-        return dp[i][j]=min;
-    }
     public int minCost(int n, int[] cuts) {
         int m=cuts.length;
-        int[] newCuts=new int[m+2];
-        newCuts[0]=0;
-        newCuts[m+1]=n;
+        int[] stick=new int[m+2];
+        stick[m+1]=n;
         for(int i=0;i<m;i++){
-            newCuts[i+1]=cuts[i];
+            stick[i+1]=cuts[i];
         }
-        Arrays.sort(newCuts);
+        Arrays.sort(stick);
         int[][] dp=new int[m+2][m+2];
-        for(int[] row:dp)Arrays.fill(row,-1);
-        return f(0,m+1,newCuts,dp);
+
+        for(int len=2;len<stick.length;len++){
+            for(int i=0;i+len<stick.length;i++){
+                int j=i+len;
+                dp[i][j]=Integer.MAX_VALUE;
+                for(int k=i+1;k<j;k++){
+                    int cost=dp[i][k]+dp[k][j]+stick[j]-stick[i];
+                    dp[i][j]=Math.min(cost,dp[i][j]);
+                }
+            }
+        }
+        return dp[0][m+1];
     }
 }

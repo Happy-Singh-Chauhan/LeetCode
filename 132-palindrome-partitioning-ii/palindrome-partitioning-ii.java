@@ -5,22 +5,19 @@ class Solution {
         }
         return true;
     }
-    public int f(int start,int end,String s,int[] dp){
-        if(start == end)return 0;
-        if(dp[start] != -1)return dp[start];
+    public int minCut(String s) {
+        int n=s.length();
+        int[] dp=new int[n+1];
+        for(int i=n-1;i>=0;i--){
         int min=Integer.MAX_VALUE;
-        for(int j=start;j<end;j++){
-            if(isPalindrome(start,j,s)){
-                int cost=1+f(j+1,end,s,dp);
+        for(int j=i;j<n;j++){
+            if(isPalindrome(i,j,s)){
+                int cost=1+dp[j+1];
                 min=Math.min(min,cost);
             }
         }
-        return dp[start]=min;
+        dp[i]=min;
     }
-    public int minCut(String s) {
-        int n=s.length();
-        int[] dp=new int[n];
-        Arrays.fill(dp,-1);
-        return f(0,n,s,dp)-1;
+    return dp[0]-1;
     }
 }

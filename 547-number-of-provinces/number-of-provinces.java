@@ -1,10 +1,17 @@
 class Solution {
-    public void dfs(int node,int[][] isConnected,boolean[] visited){
+    public void bfs(int node,int[][] isConnected,boolean[] visited){
         int n=isConnected.length;
+        Queue<Integer> queue=new LinkedList<>();
+        queue.offer(node);
         visited[node]=true;
-        for(int i=0;i<n;i++){
-            if(isConnected[node][i] == 1 && !visited[i]){
-                dfs(i,isConnected,visited);
+
+        while(!queue.isEmpty()){
+            node=queue.poll();
+            for(int i=0;i<n;i++){
+                if(isConnected[node][i] == 1 && !visited[i]){
+                    queue.offer(i);
+                    visited[i]=true;
+                }
             }
         }
         return;
@@ -17,7 +24,7 @@ class Solution {
         for(int i=0;i<n;i++){
             if(!visited[i]){
                 noOfProvinces++;
-                dfs(i,isConnected,visited);
+                bfs(i,isConnected,visited);
             }
         }
         return noOfProvinces;

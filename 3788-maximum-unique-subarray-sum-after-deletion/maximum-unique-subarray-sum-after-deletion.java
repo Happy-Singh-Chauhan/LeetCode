@@ -6,11 +6,11 @@ class Solution {
             maxVal=Math.max(maxVal,num);
         }
         if(maxVal < 0)return maxVal;
-        Set<Integer> set=new HashSet<>();
+        int[] freq=new int[101];
         for(int num:nums){
-            if(num > 0 && !set.contains(num)){
+            if(num > 0 && freq[num] == 0){
             ans+=num;
-            set.add(num);
+            freq[num]++;
             }
         }
         return ans;

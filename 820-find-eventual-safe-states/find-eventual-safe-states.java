@@ -14,7 +14,6 @@ class Solution {
         int n=graph.length;
         boolean[] visited=new boolean[n];
         boolean[] inStack=new boolean[n];
-
         for(int i=0;i<n;i++){
             if(!visited[i]){
                 dfs(i,graph,visited,inStack);
@@ -22,7 +21,9 @@ class Solution {
         }
         List<Integer> list=new ArrayList<>();
         for(int i=0;i<n;i++){
-            if(!inStack[i])list.add(i);
+            if(!inStack[i]){
+                list.add(i);
+            }
         }
         return list;
     }

@@ -1,7 +1,11 @@
 class Solution {
     public int totalFruit(int[] fruits) {
         int n=fruits.length;
-        int[] freq=new int[100001];
+        int maxSize=0;
+        for(int num:fruits){
+            maxSize=Math.max(maxSize,num);
+        }
+        int[] freq=new int[maxSize+1];
         int left=0;
         int cnt=0;
         int total=0;

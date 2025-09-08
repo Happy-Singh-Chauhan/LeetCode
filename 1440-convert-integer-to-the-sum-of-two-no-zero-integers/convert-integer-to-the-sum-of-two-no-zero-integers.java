@@ -1,7 +1,9 @@
 class Solution {
     public boolean check(int n){
-        String s=""+n;
-        if(s.contains("0"))return false;
+        while(n > 0){
+            if(n % 10 == 0)return false;
+            n/=10;
+        }
         return true;
     }
     public int[] getNoZeroIntegers(int n) {

@@ -1,9 +1,8 @@
 class Solution {
     public int findFinalValue(int[] nums, int original) {
-        Arrays.sort(nums);
-        for(int num: nums){
+        for(int num:nums){
             if(num == original){
-                original*=2;
+                original=findFinalValue(nums,original*2);
             }
         }
         return original;

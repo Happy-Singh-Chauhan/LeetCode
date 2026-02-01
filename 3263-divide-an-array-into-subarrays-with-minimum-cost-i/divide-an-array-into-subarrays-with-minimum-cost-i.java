@@ -3,11 +3,17 @@ class Solution {
         int n=nums.length;
         if(n == 3)return nums[0]+nums[1]+nums[2];
         int ans=nums[0];
-        int[] arr=new int[n-1];
+        int min1=Integer.MAX_VALUE;
+        int min2=Integer.MAX_VALUE;
         for(int i=1;i<n;i++){
-            arr[i-1]=nums[i];
+            if(nums[i] < min1){
+                min2=min1;
+                min1=nums[i];
+            }
+            else if(nums[i] < min2){
+                min2=nums[i];
+            }
         }
-        Arrays.sort(arr);
-        return ans+arr[0]+arr[1];
+        return ans+min1+min2;
     }
 }
